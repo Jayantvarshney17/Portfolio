@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jayant Varshney | Software and Machine Learning Engineer</title>
+    <link rel="icon" type="image/png" href="dh.png" />
+    <style>
+    :root {
+      --primary: #2a9d8f;
+      --bg: #f4f6f8;
+      --dark: #1e2a38;
+      --text: #2d3436;
+      --card-bg: #fff;
+    }
+
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      background-image: url("image.png");
+      background-repeat: no-repeat;
+      background-size: 500%;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to right, var(--dark), #34495e);
+      color: #fff;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+    }
+
+    .nav-links li {
+      margin-left: 1rem;
+    }
+
+    .nav-links a {
+      color: #eee;
+      text-decoration: none;
+      padding: 0.4rem 0.75rem;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    main {
+      padding: 2rem 5%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fade 0.5s ease-in-out;
+    }
+
+    @keyframes fade {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: var(--dark);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      color: var(--dark);
+      border-bottom: 3px solid var(--primary);
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+    
+#internships .card {
+  background: var(--card-bg);
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#internships .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+#internships h3 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+#internships p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+    .project-grid, .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card, .cert-card {
+      background: var(--card-bg);
+      padding: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover, .cert-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h3, .cert-card h3 {
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .card p, .cert-card p {
+      margin-bottom: 0.75rem;
+    }
+
+    .card a, .cert-card a {
+      text-decoration: none;
+      color: #fff;
+      background: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+
+    .card a:hover, .cert-card a:hover {
+      background: #21867a;
+    }
+
+    .cert-card img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 0.5rem;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+    }
+  </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">Jayant Varshney</div>
+      <ul class="nav-links">
+        <li><a href="#" data-tab="home">Home</a></li>
+        <li><a href="Resume_Jayant.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+        <li><a href="#" data-tab="internships">Internship</a></li>
+        <li><a href="#" data-tab="certificates">Certificates</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- Home Section -->
+      <section id="home" class="tab-content active">
+        <div class="hero">
+          <h1>Hello, I’m Jayant Varshney</h1>
+          <p>Software and Machine Learning Engineer</p>
+        </div>
+
+        <section class="about">
+          <h2>About Me</h2>
+          <div
+            style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start; margin-top: 1.5rem;">
+
+            <!-- Profile Image -->
+            <div style="flex: 1 1 250px; text-align: center;">
+              <img src="profile.jpg" alt="Jayant Varshney"
+                style="max-width: 100%; border-radius: 12px; box-shadow: 0 8px 18px rgba(0,0,0,0.15);">
+            </div>
+
+            <!-- Bio & Contact -->
+            <div style="flex: 2 1 400px;">
+              <div
+                style="background: #fff; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 1rem;">
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                   I'm a passionate Software and Machine Learning Engineer 
+                   with a strong foundation in algorithms, data structures, and intelligent systems. 
+                   I enjoy building scalable software applications and exploring 
+                   how machine learning can solve real-world problems.
+                </p>    
+                <p style="font-size: 1.1rem;">
+                   My projects reflect a blend of engineering rigor and AI innovation, 
+                   ranging from web development to model deployment. 
+                   I thrive on learning, experimenting, and turning ideas into working solutions.
+                </p>
+              </div>
+              <div
+                style="background: #fff; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <ul style="list-style: none; padding-left: 0;">
+                  <li style="margin-bottom: 1rem;">
+                    📧 <strong>Email:</strong><br>
+                    <a href="mailto:jatinvarshney939@gmail.com"
+                      style="color: var(--primary); text-decoration: none;">jatinvarshney939@gmail.com</a>
+                  </li>
+                  <li style="margin-bottom: 1rem;">
+                    💼 <strong>GitHub:</strong><br>
+                    <a href="https://github.com/Jayantvarshney17" target="_blank"
+                      style="color: var(--primary); text-decoration: none;">//github.com/Jayantvarshney17</a>
+                  </li>
+                  <li style="margin-bottom: 1rem;">
+                    🔗 <strong>LinkedIn:</strong><br>
+                    <a href="https://www.linkedin.com/in/jayant-varshney17/" target="_blank"
+                      style="color: var(--primary); text-decoration: none;">Jayant Varshney</a>
+                  </li>
+                  <li>
+                    📱 <strong>Phone:</strong><br>
+                    +91 8791733065
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="projects">
+          <h2>Projects</h2>
+          <div class="project-grid">
+            <div class="card">
+              <h3>First Aid - Disease Prediction</h3>
+              <p>Health assistant predicting diseases from symptoms using
+                machine learning.</p>
+              <a href="https://first-aid-wqvr.onrender.com/"
+                target="_blank">View Project →</a>
+            </div>
+            <div class="card">
+              <h3>Eagle Insight</h3>
+              <p>Vehicle Number Plate Detection & Stolen Alert System using
+                Django & OpenCV.</p>
+              <a
+                href="https://www.erpublications.com/uploaded_files/download/mr-rohit-yadav-dheeraj-varshney-abhay-kumar-giri-jayant-varshney_UWUce.pdf"
+                target="_blank">Research Paper →</a>
+            </div>
+            <div class="card">
+              <h3>AcademicPluss</h3>
+              <p>PHP platform for student doubt solving & academic
+                collaboration.</p>
+            </div>
+            <div class="card">
+              <h3>MBD Filling Station Website</h3>
+              <p>Responsive web design for fuel station using HTML, CSS, JS.</p>
+              <a href="https://dheeru42.github.io/MBDfilling/"
+                target="_blank">View Site →</a>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- Intership section -->
+      <section id="internships" class="tab-content">
+        <h2>Internships</h2>
+        <div class="project-grid">
+          
+          <div class="card">
+            <h3>Foundation of cloud IOT Edge ML</h3>
+            <p><strong>Organization:</strong> NPTEL</p>
+            <p><strong>Duration:</strong> Feb 2025 – April 2025</p>
+            <p>Completed NPTEL internship on ‘Foundation of Cloud IoT and Edge ML,’ 
+              focusing on the integration of cloud computing, 
+              Internet of Things, and machine learning at the edge. 
+              Gained hands-on experience with edge device data processing, 
+              cloud-IoT communication, 
+              and deploying ML models for real-time decision-making."</p>
+          </div>
+          <div class="card">
+            <h3> Python Programming Internship</h3>
+            <p><strong>Organization:</strong> Skill Void & Pantech Solutions</p>
+            <p><strong>Duration:</strong> April 2024</p>
+            <p> Developed Python-based applications and scripts for automation and data processing.
+              Gained hands-on experience with core programming concepts including OOP, file handling, and exception management. 
+              Worked on mini-projects to apply Python in real-world scenarios.</p>
+          </div>
+          <div class="card">
+            <h3> Python Programming Internship</h3>
+            <p><strong>Organization:</strong> Guvi HCL</p>
+            <p><strong>Duration:</strong> Aug 2023</p>
+            <p> Developed Python-based applications and scripts for automation and data processing.
+              Gained hands-on experience with core programming concepts including OOP, file handling, and exception management. 
+              Worked on mini-projects to apply Python in real-world scenarios.</p>
+          </div>
+          <div class="card">
+            <h3>Full Stack Development Internship</h3>
+            <p><strong>Organization:</strong> Pantech CETPA Infotech Pvt. Ltd.</p>
+            <p><strong>Duration:</strong> Nov 2023</p>
+            <p>Built responsive web pages using HTML, CSS, JavaScript, and Bootstrap. 
+              Worked on frontend-backend integration using PHP/MySQL or similar technologies. 
+              Collaborated in a team to design and implement a mini web project. </p>
+          </div>
+          <div class="card">
+            <h3>Machine Learning Internship</h3>
+            <p><strong>Company:</strong> Pantech Solutions</p>
+            <p><strong>Duration:</strong> Jan 2023 – Mar 2023</p>
+            <p>Worked on real-time predictive models, data preprocessing
+              pipelines, and deployed ML APIs for health analytics and alert
+              systems.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certificate Section -->
+      <section id="certificates" class="tab-content">
+        <h2>My Certificates</h2>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <img src="certimg/deloitte.jpg" alt="Certificate">
+            <h3>Research Publication</h3>
+            <p>Issued: July 2025 by Deloitte Forage</p>
+            <a
+              href="certpdf/research.pdf"
+              target="_blank">View PDF</a>
+          </div>
+          <div class="cert-card">
+            <img src="certimg/research.jpg" alt="Certificate">
+            <h3>Research Publication</h3>
+            <p>Issued: April 2025 by ER Publication</p>
+            <a
+              href="certpdf/research.pdf"
+              target="_blank">View PDF</a>
+          </div>
+          <div class="cert-card">
+            <img src="certimg/NPTEL.jpg" alt="Certificate">
+            <h3>NPTEL</h3>
+            <p>Issued: April 2025 by NPTEL</p>
+            <a
+              href="certpdf/NPTEL.pdf"
+              target="_blank">View PDF</a>
+          </div>
+          <div class="cert-card">
+            <img src="certimg/skill3.jpg" alt="Certificate">
+            <h3>Python Programming</h3>
+            <p>Issued: September 2024 by Skill Void</p>
+            <a
+              href="certpdf/skill3.pdf"
+              target="_blank">View PDF</a>
+          </div><div class="cert-card">
+            <img src="certimg/skill2.png" alt="Certificate">
+            <h3>Python Programming</h3>
+            <p>Issued: September 2024 by Skill Void</p>
+            <a
+              href="certpdf/skill2.pdf"
+              target="_blank">View PDF</a>
+          </div>
+          <div class="cert-card">
+            <img src="certimg/skill1.jpg" alt="Certificate">
+            <h3>Python Programming</h3>
+            <p>Issued: September 2024 by Skill Void</p>
+            <a
+              href="certpdf/skill1.pdf"
+              target="_blank">View PDF</a>
+          </div>
+          <div class="cert-card">
+            <img src="certimg/cetpacert.png" alt="Certificate">
+            <h3>Full Stack Development</h3>
+            <p>Issued: Nov 2023 by Cetpa Infotech</p>
+            <a
+              href="certpdf/cetpa.pdf"
+              target="_blank">View PDF</a>
+          </div>
+          <div class="cert-card">
+            <img src="certimg/guvi1.png" alt="Certificate">
+            <h3>AI for India 2.0</h3>
+            <p>Issued: August 2023 by Guvi Skill India</p>
+            <a
+              href="certpdf/guvi1.pdf"
+              target="_blank">View PDF</a>
+          </div>
+          <div class="cert-card">
+            <img src="certimg/guvi.png" alt="Certificate">
+            <h3>Python</h3>
+            <p>Issued: August 2023 by Guvi HCL</p>
+            <a
+              href="certpdf/guvi.pdf"
+              target="_blank">View PDF</a>
+          </div>
+          <div class="cert-card">
+            <img src="certimg/pantechcert.png" alt="Certificate">
+            <h3>Machine Learning</h3>
+            <p>Issued: Jan 2023 by Pantech Solution</p>
+            <a
+              href="certpdf/pantech.pdf"
+              target="_blank">View PDF</a>
+          </div>
+          <!-- Add more certificates as needed -->
+        </div>
+      </section>
+    </main>
+
+    <script>
+  document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', e => {
+    const tab = a.getAttribute('data-tab');
+
+    // If no data-tab (like Resume), let it behave normally
+    if (!tab) return;
+
+    // Otherwise handle tab switching
+    e.preventDefault();
+    document.querySelectorAll('.nav-links a').forEach(x => x.classList.remove('active'));
+    a.classList.add('active');
+
+    document.querySelectorAll('.tab-content').forEach(sec => {
+      sec.classList.remove('active');
+      if (sec.id === tab) sec.classList.add('active');
+    });
+  });
+});
+
+  </script>
+  </body>
+</html>
