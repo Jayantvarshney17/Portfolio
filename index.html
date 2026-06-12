@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jayant Varshney | Cyber-Deck Portfolio OS</title>
+  <meta name="description" content="Portfolio of Jayant Varshney, Software and Machine Learning Engineer. Interactive Cyber-deck desktop interface featuring an interactive terminal, projects directory, internship timeline, and certificates vault." />
+  <meta name="keywords" content="Jayant Varshney, Machine Learning Engineer, Software Engineer, Portfolio, Cyberpunk, Interactive Portfolio, Web Developer" />
+  <meta name="author" content="Jayant Varshney" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="certimg/skill2.png">
+</head>
+<body>
+
+  <!-- Custom Neon Ring Cursor -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+
+  <!-- Animated Grid & Interactive Canvas Particles Background -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="desktop-overlay"></div>
+
+  <!-- Desktop Icons Workspace Area -->
+  <main class="desktop-space" id="desktop-space">
+    
+    <!-- Icon: Bio Dossier -->
+    <div class="desktop-icon" data-open="win-bio">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+      </svg>
+      <span>Dossier.bin</span>
+    </div>
+
+    <!-- Icon: Terminal -->
+    <div class="desktop-icon" data-open="win-terminal">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+      </svg>
+      <span>Terminal.sh</span>
+    </div>
+
+    <!-- Icon: Projects Directory -->
+    <div class="desktop-icon" data-open="win-projects">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+      </svg>
+      <span>Projects.dir</span>
+    </div>
+
+    <!-- Icon: Internship Logs -->
+    <div class="desktop-icon" data-open="win-internships">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+      </svg>
+      <span>Experience.log</span>
+    </div>
+
+    <!-- Icon: Certificates Vault -->
+    <div class="desktop-icon" data-open="win-certificates">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+      </svg>
+      <span>Certificates.db</span>
+    </div>
+
+    <!-- Icon: System Settings -->
+    <div class="desktop-icon" data-open="win-settings">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.43l-1.003.828c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.552 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.43l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+      </svg>
+      <span>Settings.sys</span>
+    </div>
+
+    <!-- WINDOW 1: BIO DOSSIER -->
+    <section class="window" id="win-bio" style="width: 680px; height: 500px; top: 30px; left: 180px;">
+      <header class="window-header">
+        <div class="window-title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+          </svg>
+          <span>Dossier: Jayant Varshney</span>
+        </div>
+        <div class="window-controls">
+          <button class="control-btn minimize" aria-label="Minimize"></button>
+          <button class="control-btn maximize" aria-label="Maximize"></button>
+          <button class="control-btn close" aria-label="Close"></button>
+        </div>
+      </header>
+      <div class="window-content">
+        <div class="bio-layout">
+          <!-- Profile Column -->
+          <div class="bio-avatar-container">
+            <div class="bio-avatar-frame">
+              <img src="profile.jpg" alt="Jayant Varshney portrait">
+            </div>
+            <div class="bio-status">
+              <span class="status-dot"></span>
+              <span>Available for Hire</span>
+            </div>
+            <a href="Resume_Jayant.pdf" target="_blank" rel="noopener noreferrer" class="resume-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+              </svg>
+              <span>Download CV</span>
+            </a>
+          </div>
+          <!-- Bio dossier Details Column -->
+          <div class="bio-details">
+            <header class="bio-dossier-header">
+              <h2>JAYANT VARSHNEY</h2>
+              <p class="font-code">&gt; Software &amp; ML Engineer</p>
+            </header>
+            <p class="bio-text">
+              I'm a passionate Software and Machine Learning Engineer with a strong foundation in algorithms, data structures, and intelligent systems. I enjoy building scalable applications and deploying smart machine learning models to solve complex real-world challenges.
+            </p>
+            <p class="bio-text">
+              My engineering framework blends technical rigor with rapid AI prototyping. I thrive in collaborative developer environments, turning abstract equations and specs into robust, scalable production-ready solutions.
+            </p>
+            <div class="bio-grid-info">
+              <div class="bio-info-item">
+                <strong>Email</strong>
+                <a href="mailto:jatinvarshney939@gmail.com">jatinvarshney939@gmail.com</a>
+              </div>
+              <div class="bio-info-item">
+                <strong>GitHub</strong>
+                <a href="https://github.com/Jayantvarshney17" target="_blank" rel="noopener noreferrer">//Jayantvarshney17</a>
+              </div>
+              <div class="bio-info-item">
+                <strong>LinkedIn</strong>
+                <a href="https://www.linkedin.com/in/jayant-varshney17/" target="_blank" rel="noopener noreferrer">jayant-varshney17</a>
+              </div>
+              <div class="bio-info-item">
+                <strong>Phone</strong>
+                <span>+91 8791733065</span>
+              </div>
+            </div>
+
+            <!-- Embedded Contact Widget -->
+            <div class="contact-form-title">Secure Communications</div>
+            <form class="contact-form" id="contact-form" action="https://formspree.io/f/your-id" method="POST" onsubmit="event.preventDefault(); window.sendSecureMessage();">
+              <div class="form-group">
+                <label for="form-email">SENDER_EMAIL</label>
+                <input type="email" id="form-email" class="form-control" placeholder="your.address@domain.com" required>
+              </div>
+              <div class="form-group">
+                <label for="form-msg">SECURE_TRANSMISSION_CONTENT</label>
+                <textarea id="form-msg" class="form-control" rows="3" placeholder="Establish connection stream..." required></textarea>
+              </div>
+              <button type="submit" class="send-msg-btn">
+                <span>Deploy Message</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="resize-handle"></div>
+    </section>
+
+    <!-- WINDOW 2: TERMINAL -->
+    <section class="window" id="win-terminal" style="width: 600px; height: 400px; top: 120px; left: 100px;">
+      <header class="window-header">
+        <div class="window-title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+          </svg>
+          <span>Terminal: jayant@cyberdeck:~</span>
+        </div>
+        <div class="window-controls">
+          <button class="control-btn minimize" aria-label="Minimize"></button>
+          <button class="control-btn maximize" aria-label="Maximize"></button>
+          <button class="control-btn close" aria-label="Close"></button>
+        </div>
+      </header>
+      <div class="window-content" style="background: rgba(0,0,0,0.85);">
+        <div class="terminal-container">
+          <div class="terminal-history" id="terminal-history">
+            <!-- Command outputs will populate here -->
+            <div class="terminal-line">System Cyberdeck Boot V3.9... Active.</div>
+            <div class="terminal-line">Type <span style="color: var(--accent);">help</span> to display authorized instructions.</div>
+          </div>
+          <div class="terminal-input-wrapper">
+            <div class="terminal-prompt-line">
+              <span class="terminal-prompt-user">jayant@cyberdeck</span><span class="terminal-prompt-symbol">:~$</span>
+            </div>
+            <input type="text" class="terminal-input-field" id="terminal-input-field" autocomplete="off" autofocus>
+            <span class="typing-cursor"></span>
+          </div>
+        </div>
+      </div>
+      <div class="resize-handle"></div>
+    </section>
+
+    <!-- WINDOW 3: PROJECTS DIRECTORY -->
+    <section class="window" id="win-projects" style="width: 720px; height: 450px; top: 80px; left: 350px;">
+      <header class="window-header">
+        <div class="window-title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+          </svg>
+          <span>Projects: /home/jayant/projects</span>
+        </div>
+        <div class="window-controls">
+          <button class="control-btn minimize" aria-label="Minimize"></button>
+          <button class="control-btn maximize" aria-label="Maximize"></button>
+          <button class="control-btn close" aria-label="Close"></button>
+        </div>
+      </header>
+      <div class="window-content">
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <article class="project-card">
+            <h3>First Aid - Disease Prediction</h3>
+            <p>An intelligent health assistant predicting probable medical conditions from symptoms using machine learning.</p>
+            <div class="project-tags">
+              <span class="project-tag">Machine Learning</span>
+              <span class="project-tag">Python</span>
+              <span class="project-tag">API</span>
+            </div>
+            <a href="https://first-aid-wqvr.onrender.com/" target="_blank" rel="noopener noreferrer" class="project-link">
+              <span>View Deployment</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 12px; height: 12px;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+              </svg>
+            </a>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card">
+            <h3>Eagle Insight</h3>
+            <p>A smart, research-backed vehicle License Plate Detection &amp; Stolen Car Alert System utilizing Django &amp; OpenCV pipelines.</p>
+            <div class="project-tags">
+              <span class="project-tag">Django</span>
+              <span class="project-tag">OpenCV</span>
+              <span class="project-tag">Computer Vision</span>
+            </div>
+            <a href="https://www.erpublications.com/uploaded_files/download/mr-rohit-yadav-dheeraj-varshney-abhay-kumar-giri-jayant-varshney_UWUce.pdf" target="_blank" rel="noopener noreferrer" class="project-link">
+              <span>Research Paper</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 12px; height: 12px;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+              </svg>
+            </a>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card">
+            <h3>AcademicPluss</h3>
+            <p>A collaborative PHP student platform providing online peer duda solving, study groups, and resource sharing nodes.</p>
+            <div class="project-tags">
+              <span class="project-tag">PHP</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">Collaboration</span>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card">
+            <h3>MBD Filling Station Website</h3>
+            <p>Responsive public landing page and utility design for a commercial filling station utilizing optimized HTML, CSS, and JS routines.</p>
+            <div class="project-tags">
+              <span class="project-tag">Vanilla JS</span>
+              <span class="project-tag">Responsive</span>
+              <span class="project-tag">UI/UX</span>
+            </div>
+            <a href="https://dheeru42.github.io/MBDfilling/" target="_blank" rel="noopener noreferrer" class="project-link">
+              <span>Launch Site</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 12px; height: 12px;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+              </svg>
+            </a>
+          </article>
+        </div>
+      </div>
+      <div class="resize-handle"></div>
+    </section>
+
+    <!-- WINDOW 4: EXPERIENCE TIMELINE -->
+    <section class="window" id="win-internships" style="width: 660px; height: 440px; top: 150px; left: 220px;">
+      <header class="window-header">
+        <div class="window-title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+          </svg>
+          <span>Experience logs: /sys/log/internships</span>
+        </div>
+        <div class="window-controls">
+          <button class="control-btn minimize" aria-label="Minimize"></button>
+          <button class="control-btn maximize" aria-label="Maximize"></button>
+          <button class="control-btn close" aria-label="Close"></button>
+        </div>
+      </header>
+      <div class="window-content">
+        <div class="timeline">
+          <!-- Internship 1 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <div>
+                <span class="timeline-role">Cloud IoT Edge ML Engineer</span>
+                <span class="timeline-org"> @ NPTEL</span>
+              </div>
+              <span class="timeline-date">Feb 2025 - Apr 2025</span>
+            </div>
+            <div class="timeline-body">
+              Completed NPTEL internship on 'Foundation of Cloud IoT and Edge ML,' focusing on the integration of cloud computing, Internet of Things, and machine learning at the edge. Gained hands-on experience with edge device data processing, cloud-IoT communication protocols, and deploying ML models for real-time edge decision-making.
+            </div>
+          </div>
+
+          <!-- Internship 2 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <div>
+                <span class="timeline-role">Python Programming Intern</span>
+                <span class="timeline-org"> @ Skill Void &amp; Pantech Solutions</span>
+              </div>
+              <span class="timeline-date">Apr 2024</span>
+            </div>
+            <div class="timeline-body">
+              Developed python-based applications and scripts for automation and data processing. Gained hands-on experience with core programming concepts including OOP, file handling, and exception management. Worked on mini-projects to apply Python in real-world scenarios.
+            </div>
+          </div>
+
+          <!-- Internship 3 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <div>
+                <span class="timeline-role">Python Engineering Intern</span>
+                <span class="timeline-org"> @ Guvi HCL</span>
+              </div>
+              <span class="timeline-date">Aug 2023</span>
+            </div>
+            <div class="timeline-body">
+              Engineered Python-based scripts to optimize data pipeline structures. Integrated custom packages to parse and restructure JSON streams. Conducted diagnostics and tests to maintain core data module integrity.
+            </div>
+          </div>
+
+          <!-- Internship 4 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <div>
+                <span class="timeline-role">Full Stack Development Intern</span>
+                <span class="timeline-org"> @ Pantech CETPA Infotech Pvt. Ltd.</span>
+              </div>
+              <span class="timeline-date">Nov 2023</span>
+            </div>
+            <div class="timeline-body">
+              Built responsive web pages using HTML, CSS, JavaScript, and Bootstrap. Worked on frontend-backend database integration using PHP/MySQL technologies. Collaborated in a team to design and implement a mini web project.
+            </div>
+          </div>
+
+          <!-- Internship 5 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <div>
+                <span class="timeline-role">Machine Learning Intern</span>
+                <span class="timeline-org"> @ Pantech Solutions</span>
+              </div>
+              <span class="timeline-date">Jan 2023 - Mar 2023</span>
+            </div>
+            <div class="timeline-body">
+              Worked on real-time predictive models, data preprocessing pipelines, and deployed ML APIs for health analytics and alert systems.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="resize-handle"></div>
+    </section>
+
+    <!-- WINDOW 5: CERTIFICATES VAULT -->
+    <section class="window" id="win-certificates" style="width: 700px; height: 480px; top: 50px; left: 260px;">
+      <header class="window-header">
+        <div class="window-title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+          </svg>
+          <span>Certificates: /home/jayant/certificates</span>
+        </div>
+        <div class="window-controls">
+          <button class="control-btn minimize" aria-label="Minimize"></button>
+          <button class="control-btn maximize" aria-label="Maximize"></button>
+          <button class="control-btn close" aria-label="Close"></button>
+        </div>
+      </header>
+      <div class="window-content">
+        <div class="cert-grid">
+          <!-- Cert 1 -->
+          <div class="cert-card" data-img="certimg/deloitte.jpg" data-pdf="certpdf/research.pdf" data-title="Research Publication" data-issued="July 2025 by Deloitte Forage">
+            <div class="cert-thumb"><img src="certimg/deloitte.jpg" alt="Deloitte Research"></div>
+            <div class="cert-info">
+              <h4>Research Publication</h4>
+              <p>Deloitte Forage (July 2025)</p>
+              <span class="cert-view-link">Zoom View &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Cert 2 -->
+          <div class="cert-card" data-img="certimg/research.jpg" data-pdf="certpdf/research.pdf" data-title="Research Publication" data-issued="April 2025 by ER Publication">
+            <div class="cert-thumb"><img src="certimg/research.jpg" alt="ER Research Publication"></div>
+            <div class="cert-info">
+              <h4>Research Publication</h4>
+              <p>ER Publication (April 2025)</p>
+              <span class="cert-view-link">Zoom View &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Cert 3 -->
+          <div class="cert-card" data-img="certimg/NPTEL.jpg" data-pdf="certpdf/NPTEL.pdf" data-title="NPTEL Cloud IoT &amp; Edge ML" data-issued="April 2025 by NPTEL">
+            <div class="cert-thumb"><img src="certimg/NPTEL.jpg" alt="NPTEL"></div>
+            <div class="cert-info">
+              <h4>NPTEL Certificate</h4>
+              <p>NPTEL (April 2025)</p>
+              <span class="cert-view-link">Zoom View &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Cert 4 -->
+          <div class="cert-card" data-img="certimg/skill3.jpg" data-pdf="certpdf/skill3.pdf" data-title="Python Programming" data-issued="September 2024 by Skill Void">
+            <div class="cert-thumb"><img src="certimg/skill3.jpg" alt="Skill Void Python 3"></div>
+            <div class="cert-info">
+              <h4>Python Programming</h4>
+              <p>Skill Void (Sept 2024)</p>
+              <span class="cert-view-link">Zoom View &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Cert 5 -->
+          <div class="cert-card" data-img="certimg/skill2.png" data-pdf="certpdf/skill2.pdf" data-title="Python Programming" data-issued="September 2024 by Skill Void">
+            <div class="cert-thumb"><img src="certimg/skill2.png" alt="Skill Void Python 2"></div>
+            <div class="cert-info">
+              <h4>Python Programming</h4>
+              <p>Skill Void (Sept 2024)</p>
+              <span class="cert-view-link">Zoom View &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Cert 6 -->
+          <div class="cert-card" data-img="certimg/skill1.jpg" data-pdf="certpdf/skill1.pdf" data-title="Python Programming" data-issued="September 2024 by Skill Void">
+            <div class="cert-thumb"><img src="certimg/skill1.jpg" alt="Skill Void Python 1"></div>
+            <div class="cert-info">
+              <h4>Python Programming</h4>
+              <p>Skill Void (Sept 2024)</p>
+              <span class="cert-view-link">Zoom View &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Cert 7 -->
+          <div class="cert-card" data-img="certimg/cetpacert.png" data-pdf="certpdf/cetpa.pdf" data-title="Full Stack Development" data-issued="November 2023 by Cetpa Infotech">
+            <div class="cert-thumb"><img src="certimg/cetpacert.png" alt="Cetpa Full Stack"></div>
+            <div class="cert-info">
+              <h4>Full Stack Development</h4>
+              <p>Cetpa Infotech (Nov 2023)</p>
+              <span class="cert-view-link">Zoom View &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Cert 8 -->
+          <div class="cert-card" data-img="certimg/guvi1.png" data-pdf="certpdf/guvi1.pdf" data-title="AI for India 2.0" data-issued="August 2023 by Guvi Skill India">
+            <div class="cert-thumb"><img src="certimg/guvi1.png" alt="Guvi AI for India"></div>
+            <div class="cert-info">
+              <h4>AI for India 2.0</h4>
+              <p>Guvi Skill India (Aug 2023)</p>
+              <span class="cert-view-link">Zoom View &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Cert 9 -->
+          <div class="cert-card" data-img="certimg/guvi.png" data-pdf="certpdf/guvi.pdf" data-title="Python Programming" data-issued="August 2023 by Guvi HCL">
+            <div class="cert-thumb"><img src="certimg/guvi.png" alt="Guvi Python"></div>
+            <div class="cert-info">
+              <h4>Python Programming</h4>
+              <p>Guvi HCL (Aug 2023)</p>
+              <span class="cert-view-link">Zoom View &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Cert 10 -->
+          <div class="cert-card" data-img="certimg/pantechcert.png" data-pdf="certpdf/pantech.pdf" data-title="Machine Learning" data-issued="January 2023 by Pantech Solution">
+            <div class="cert-thumb"><img src="certimg/pantechcert.png" alt="Pantech ML"></div>
+            <div class="cert-info">
+              <h4>Machine Learning</h4>
+              <p>Pantech Solution (Jan 2023)</p>
+              <span class="cert-view-link">Zoom View &rarr;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="resize-handle"></div>
+    </section>
+
+    <!-- WINDOW 6: SYSTEM CONTROL & SETTINGS -->
+    <section class="window" id="win-settings" style="width: 550px; height: 490px; top: 180px; left: 420px;">
+      <header class="window-header">
+        <div class="window-title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.43l-1.003.828c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.552 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.43l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          </svg>
+          <span>Control Panel: System Configuration</span>
+        </div>
+        <div class="window-controls">
+          <button class="control-btn minimize" aria-label="Minimize"></button>
+          <button class="control-btn maximize" aria-label="Maximize"></button>
+          <button class="control-btn close" aria-label="Close"></button>
+        </div>
+      </header>
+      <div class="window-content">
+        <div class="control-panel">
+          <!-- Theme Selector Section -->
+          <div class="settings-section">
+            <h3>Visual Style Theme</h3>
+            <div class="theme-selector-grid">
+              <div class="theme-option selected" data-theme="cyberdeck">
+                <span class="theme-dot td-cyber"></span>
+                <span class="theme-label">Cyber-Deck</span>
+              </div>
+              <div class="theme-option" data-theme="synthwave">
+                <span class="theme-dot td-synth"></span>
+                <span class="theme-label">Synthwave</span>
+              </div>
+              <div class="theme-option" data-theme="matrix">
+                <span class="theme-dot td-matrix"></span>
+                <span class="theme-label">Matrix</span>
+              </div>
+              <div class="theme-option" data-theme="cyberpunk">
+                <span class="theme-dot td-punk"></span>
+                <span class="theme-label">Neon Punk</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Environment Settings Section -->
+          <div class="settings-section">
+            <h3>Atmosphere &amp; Sound</h3>
+            <div class="control-item">
+              <span>Interactive Particles</span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="toggle-particles" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="control-item">
+              <span>Ambient Space Drone</span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="toggle-audio">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="control-item">
+              <span>Feedback SFX Volume</span>
+              <input type="range" id="volume-control" class="slider-volume" min="0" max="1" step="0.1" value="0.5">
+            </div>
+          </div>
+
+          <!-- Live Performance Monitor -->
+          <div class="settings-section">
+            <h3>Telemetry Dashboard</h3>
+            <div class="sys-dashboard">
+              <div>
+                <div class="telemetry-row">
+                  <span class="telemetry-label">CPU LOAD</span>
+                  <span class="telemetry-value" id="cpu-value">2.4%</span>
+                </div>
+                <div class="telemetry-chart-container">
+                  <canvas id="cpu-canvas" class="telemetry-canvas"></canvas>
+                </div>
+              </div>
+              <div>
+                <div class="telemetry-row">
+                  <span class="telemetry-label">RAM LOAD</span>
+                  <span class="telemetry-value" id="ram-value">4.1 GB / 16.0 GB</span>
+                </div>
+                <div class="telemetry-chart-container">
+                  <canvas id="ram-canvas" class="telemetry-canvas"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="resize-handle"></div>
+    </section>
+
+  </main>
+
+  <!-- Bottom OS Status bar / Dock -->
+  <footer class="taskbar">
+    <div class="dock-start">
+      <div class="deck-badge">
+        <span></span>JAYANT_DECK_v3.9
+      </div>
+    </div>
+
+    <!-- Active Apps dock items -->
+    <div class="dock-icons">
+      <button class="dock-btn" data-window="win-bio">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+        </svg>
+        <span class="tooltip">Dossier</span>
+      </button>
+
+      <button class="dock-btn" data-window="win-terminal">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+        </svg>
+        <span class="tooltip">Terminal</span>
+      </button>
+
+      <button class="dock-btn" data-window="win-projects">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+        </svg>
+        <span class="tooltip">Projects</span>
+      </button>
+
+      <button class="dock-btn" data-window="win-internships">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+        </svg>
+        <span class="tooltip">Experience</span>
+      </button>
+
+      <button class="dock-btn" data-window="win-certificates">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+        </svg>
+        <span class="tooltip">Certificates</span>
+      </button>
+
+      <button class="dock-btn" data-window="win-settings">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.43l-1.003.828c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.552 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.43l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+        </svg>
+        <span class="tooltip">Settings</span>
+      </button>
+    </div>
+
+    <div class="dock-end">
+      <!-- Status items -->
+      <div class="system-status-indicator">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+        </svg>
+        <span id="ping-indicator">LATENCY: 18ms</span>
+      </div>
+      <div class="system-clock" id="system-clock">00:00:00 UTC</div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal for Certificate Previews -->
+  <section class="lightbox-modal" id="lightbox-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close preview">&times;</button>
+    <div class="lightbox-content">
+      <div class="lightbox-img-wrapper">
+        <img id="lightbox-img" src="" alt="Certificate zoom view">
+      </div>
+      <div class="lightbox-details">
+        <div>
+          <h3 id="lightbox-title">Certificate Name</h3>
+          <p id="lightbox-issued" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Issued by Organization</p>
+        </div>
+        <a id="lightbox-pdf-btn" href="" target="_blank" rel="noopener noreferrer" class="lightbox-pdf-btn">View PDF</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast notifications container -->
+  <div class="toast-notification" id="toast-notification">
+    <span class="toast-icon">💻</span>
+    <span id="toast-message">Secure link established.</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
