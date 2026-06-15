@@ -632,78 +632,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- TELEMETRY GRAPH RENDERING ---
-  const initTelemetryCanvas = (canvasId, valueId, multiplier, baseVal, suffix = '%') => {
-    const tCanvas = document.getElementById(canvasId);
-    const tVal = document.getElementById(valueId);
-    if (!tCanvas || !tCanvas.getContext) return;
-    
-    const tCtx = tCanvas.getContext('2d');
-    let dataPoints = Array(50).fill(15);
-    
-    const updateGraph = () => {
-      if (!tCanvas) return;
-      
-      // Resize canvas relative to container if needed
-      tCanvas.width = tCanvas.parentElement.clientWidth;
-      tCanvas.height = tCanvas.parentElement.clientHeight;
-      
-      // Calculate random loading telemetry
-      const lastVal = dataPoints[dataPoints.length - 1];
-      const noise = (Math.random() - 0.5) * 3;
-      let newVal = Math.max(5, Math.min(45, lastVal + noise));
-      
-      dataPoints.shift();
-      dataPoints.push(newVal);
 
-      // Display numeric load text
-      if (tVal) {
-        const percentage = Math.round((newVal / 50) * multiplier + baseVal);
-        if (suffix === ' GB') {
-          tVal.textContent = `${(percentage / 10).toFixed(1)} GB / 16.0 GB`;
-        } else {
-          tVal.textContent = `${percentage}${suffix}`;
-        }
-      }
-
-      // Draw
-      tCtx.clearRect(0, 0, tCanvas.width, tCanvas.height);
-      const accentColor = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#00f0ff';
-      
-      tCtx.strokeStyle = accentColor;
-      tCtx.lineWidth = 1.5;
-      tCtx.shadowColor = accentColor;
-      tCtx.shadowBlur = 4;
-      
-      tCtx.beginPath();
-      const step = tCanvas.width / (dataPoints.length - 1);
-      
-      dataPoints.forEach((pt, idx) => {
-        const x = idx * step;
-        const y = tCanvas.height - (pt * tCanvas.height / 50);
-        if (idx === 0) {
-          tCtx.moveTo(x, y);
-        } else {
-          tCtx.lineTo(x, y);
-        }
-      });
-      
-      tCtx.stroke();
-      
-      // Gradient fill beneath wave
-      tCtx.shadowBlur = 0; // reset glow
-      tCtx.fillStyle = `rgba(${getComputedStyle(document.body).getPropertyValue('--accent-rgb')}, 0.05)`;
-      tCtx.lineTo(tCanvas.width, tCanvas.height);
-      tCtx.lineTo(0, tCanvas.height);
-      tCtx.closePath();
-      tCtx.fill();
-    };
-    
-    setInterval(updateGraph, 300);
-  };
-
-  initTelemetryCanvas('cpu-canvas', 'cpu-value', 35, 2);
-  initTelemetryCanvas('ram-canvas', 'ram-value', 20, 32, ' GB');
 
   // --- TERMINAL COMMAND INTERPRETER ---
   const terminalHistory = document.getElementById('terminal-history');
