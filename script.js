@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     particlesEnabled: true,
     audioCtx: null,
     ambientSynth: null,
-    sfxGainNode: null
+    sfxGainNode: null,
+    githubRepos: []
   };
 
   // Selectors
@@ -729,9 +730,10 @@ GitHub: https://github.com/Jayantvarshney17
           printTerminalLine(`ls: directory not found. Try 'ls projects'`);
           break;
         }
-        printTerminalLine(`
+        
+        let outputText = `
 Listing directories in /home/jayant/projects:
-  - <strong>First Aid - Disease Prediction</strong> [ML System]
+  - <strong>First Aid - Disease Prediction</strong> [ML Showcase]
     Symptoms classifier predicting medical conditions.
     URL: <a href="https://first-aid-wqvr.onrender.com/" target="_blank" style="color:var(--accent);">first-aid-wqvr.onrender.com</a>
   
@@ -745,7 +747,20 @@ Listing directories in /home/jayant/projects:
   - <strong>MBD Filling Station Website</strong> [Commercial Site]
     Public relations UI build for fuel station operations.
     URL: <a href="https://dheeru42.github.io/MBDfilling/" target="_blank" style="color:var(--accent)">dheeru42.github.io/MBDfilling</a>
-        `);
+        `;
+        
+        if (sysState.githubRepos && sysState.githubRepos.length > 0) {
+          outputText += `<br><strong>Dynamic public repositories from GitHub API:</strong>`;
+          sysState.githubRepos.forEach(repo => {
+            const lang = repo.language ? ` [${repo.language}]` : '';
+            const stars = repo.stargazers_count > 0 ? ` [★:${repo.stargazers_count}]` : '';
+            outputText += `<br>  - <strong>${repo.name}</strong>${lang}${stars}<br>    ${repo.description || 'No description.'}<br>    URL: <a href="${repo.html_url}" target="_blank" style="color:var(--accent);">${repo.html_url.replace('https://', '')}</a>`;
+          });
+        } else {
+          outputText += `<br><em>[GitHub API data currently loading or API rate limit reached]</em>`;
+        }
+        
+        printTerminalLine(outputText);
         break;
 
       case 'experience':
@@ -958,6 +973,101 @@ Retrieving skills diagnostics...
       }, 1000);
     }
   };
+
+  // --- FETCH GITHUB REPOSITORIES ---
+  const fetchGitHubRepos = async () => {
+    const reposGrid = document.getElementById('github-repos-grid');
+    if (!reposGrid) return;
+
+    try {
+      const response = await fetch('https://api.github.com/users/Jayantvarshney17/repos?sort=updated&per_page=100');
+      if (!response.ok) {
+        throw new Error(`GitHub API error: ${response.status}`);
+      }
+      const data = await response.json();
+      
+      const originalRepos = data.filter(repo => !repo.fork);
+      const forks = data.filter(repo => repo.fork);
+      
+      const allRepos = [...originalRepos, ...forks].sort((a, b) => {
+        if (a.stargazers_count !== b.stargazers_count) {
+          return b.stargazers_count - a.stargazers_count;
+        }
+        return new Date(b.updated_at) - new Date(a.updated_at);
+      });
+      
+      sysState.githubRepos = allRepos;
+      
+      if (allRepos.length === 0) {
+        reposGrid.innerHTML = `
+          <div class="font-code" style="grid-column: 1 / -1; text-align: center; padding: 20px; color: var(--text-muted);">
+            No public repositories found.
+          </div>
+        `;
+        return;
+      }
+      
+      reposGrid.innerHTML = '';
+      
+      allRepos.forEach(repo => {
+        const card = document.createElement('article');
+        card.className = 'project-card';
+        card.addEventListener('click', () => {
+          window.open(repo.html_url, '_blank');
+        });
+        
+        let tagsHtml = '';
+        if (repo.language) {
+          tagsHtml += `<span class="project-tag">${repo.language}</span>`;
+        }
+        if (repo.stargazers_count > 0) {
+          tagsHtml += `<span class="project-tag" style="color: #fbbf24; border-color: rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.1);">★ ${repo.stargazers_count}</span>`;
+        }
+        if (repo.fork) {
+          tagsHtml += `<span class="project-tag" style="color: var(--accent-secondary); border-color: rgba(255, 0, 127, 0.4); background: rgba(255, 0, 127, 0.1);">Fork</span>`;
+        }
+        
+        let demoLinkHtml = '';
+        if (repo.homepage) {
+          demoLinkHtml = `
+            <a href="${repo.homepage}" target="_blank" rel="noopener noreferrer" class="project-link" style="margin-left: auto;" onclick="event.stopPropagation();">
+              <span>Live Demo</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 12px; height: 12px;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+              </svg>
+            </a>
+          `;
+        }
+        
+        card.innerHTML = `
+          <h3>${repo.name}</h3>
+          <p>${repo.description || 'No description provided.'}</p>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: auto; flex-wrap: wrap; gap: 8px;">
+            <div class="project-tags">
+              ${tagsHtml}
+            </div>
+            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="project-link" style="pointer-events: auto;" onclick="event.stopPropagation();">
+              <span>Repo &rarr;</span>
+            </a>
+            ${demoLinkHtml}
+          </div>
+        `;
+        
+        reposGrid.appendChild(card);
+      });
+      
+    } catch (error) {
+      console.error(error);
+      reposGrid.innerHTML = `
+        <div class="font-code" style="grid-column: 1 / -1; text-align: center; padding: 20px; color: #ef4444; border: 1px dashed #ef4444; border-radius: 8px; background: rgba(239, 68, 68, 0.05);">
+          Connection Failed: Unable to retrieve repository payloads.
+        </div>
+      `;
+    }
+  };
+
+  // Trigger GitHub Fetch
+  fetchGitHubRepos();
 
   // --- SYSTEM TOAST NOTIFICATION ---
   const showToast = (message, type = 'info') => {

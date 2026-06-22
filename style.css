@@ -626,6 +626,21 @@ body {
   color: var(--accent);
 }
 
+.projects-section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  color: var(--accent);
+  margin-bottom: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px dashed rgba(var(--accent-rgb), 0.2);
+  padding-bottom: 6px;
+}
+.projects-section-title.github {
+  margin-top: 24px;
+}
+
 /* App: Internship Logs */
 .timeline {
   position: relative;
