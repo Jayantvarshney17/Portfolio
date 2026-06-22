@@ -740,13 +740,6 @@ Listing directories in /home/jayant/projects:
   - <strong>Eagle Insight</strong> [CV Research]
     Django + OpenCV stolen car alert license plate trigger.
     Research Paper: <a href="https://www.erpublications.com/uploaded_files/download/mr-rohit-yadav-dheeraj-varshney-abhay-kumar-giri-jayant-varshney_UWUce.pdf" target="_blank" style="color:var(--accent)">Download Publication</a>
-
-  - <strong>AcademicPluss</strong> [Web Platform]
-    PHP peer doubts matching network.
-
-  - <strong>MBD Filling Station Website</strong> [Commercial Site]
-    Public relations UI build for fuel station operations.
-    URL: <a href="https://dheeru42.github.io/MBDfilling/" target="_blank" style="color:var(--accent)">dheeru42.github.io/MBDfilling</a>
         `;
         
         if (sysState.githubRepos && sysState.githubRepos.length > 0) {
@@ -754,7 +747,8 @@ Listing directories in /home/jayant/projects:
           sysState.githubRepos.forEach(repo => {
             const lang = repo.language ? ` [${repo.language}]` : '';
             const stars = repo.stargazers_count > 0 ? ` [★:${repo.stargazers_count}]` : '';
-            outputText += `<br>  - <strong>${repo.name}</strong>${lang}${stars}<br>    ${repo.description || 'No description.'}<br>    URL: <a href="${repo.html_url}" target="_blank" style="color:var(--accent);">${repo.html_url.replace('https://', '')}</a>`;
+            const desc = repo.description ? `<br>    ${repo.description}` : '';
+            outputText += `<br>  - <strong>${repo.name}</strong>${lang}${stars}${desc}<br>    URL: <a href="${repo.html_url}" target="_blank" style="color:var(--accent);">${repo.html_url.replace('https://', '')}</a>`;
           });
         } else {
           outputText += `<br><em>[GitHub API data currently loading or API rate limit reached]</em>`;
@@ -767,25 +761,13 @@ Listing directories in /home/jayant/projects:
       case 'log':
         printTerminalLine(`
 Displaying /sys/log/internships:
-  [2025-02] - [2025-04]  <strong>NPTEL</strong>
-              Position: Cloud IoT Edge ML Intern
-              Scope: Edge devices, IoT messaging pipelines, neural integration.
+  [2024-01] - [2024-02]  <strong>Dabotic India Pvt. Ltd.</strong>
+              Position: Web Development Intern
+              Scope: Real-time web applications, Quiz App, Landing Page, responsive UI/UX, agile timelines.
 
-  [2024-04] - [2024-04]  <strong>Skill Void & Pantech Solutions</strong>
-              Position: Python Automation Developer
-              Scope: Scripting optimization, filesystem manipulation, mini tools.
-
-  [2023-08] - [2023-08]  <strong>Guvi HCL</strong>
-              Position: Python Engineering Intern
-              Scope: Core Python, data structures, and API pipeline testing.
-
-  [2023-11] - [2023-11]  <strong>Cetpa Infotech Pvt. Ltd.</strong>
-              Position: Full Stack Web Developer
-              Scope: Frontends (HTML/CSS/Bootstrap/JS) and PHP backend logs.
-
-  [2023-01] - [2023-03]  <strong>Pantech Solutions</strong>
-              Position: Machine Learning Developer
-              Scope: Predictive systems, regression math, data cleanup.
+  [2023-06] - [2023-09]  <strong>GUVI (in collaboration with HCL)</strong>
+              Position: Python Trainee
+              Scope: OOP training, Data Structures & Algorithms, file & exception handling, modular scripts.
         `);
         break;
 
@@ -1041,7 +1023,7 @@ Retrieving skills diagnostics...
         
         card.innerHTML = `
           <h3>${repo.name}</h3>
-          <p>${repo.description || 'No description provided.'}</p>
+          ${repo.description ? `<p>${repo.description}</p>` : ''}
           <div style="display: flex; align-items: center; justify-content: space-between; margin-top: auto; flex-wrap: wrap; gap: 8px;">
             <div class="project-tags">
               ${tagsHtml}
